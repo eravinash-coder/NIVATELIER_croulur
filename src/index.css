@@ -1,0 +1,24 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0A1428;          /* Prussian Blue */
+  --cream: #DEDBD4;       /* Dust Grey */
+  --gold: #B46432;        /* Cinnamon Wood */
+  --tan: #C8AC90;         /* Tan */
+  --slate: #596168;       /* Blue Slate */
+  --muted: #596168;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Montserrat', sans-serif;
+  cursor: none;
+}

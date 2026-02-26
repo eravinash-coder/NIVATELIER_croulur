@@ -1,0 +1,133 @@
+.scene {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  animation: fadeUp 1s ease both 0.3s;
+  opacity: 0;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.wrapper {
+  position: relative;
+  width: 900px;
+  height: 520px;
+}
+
+/* Product info */
+.info {
+  text-align: center;
+  margin-top: 52px;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.info.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.tag {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #B46432;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  color: #DEDBD4;
+}
+
+.desc {
+  font-size: 0.7rem;
+  color: #596168;
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+
+.price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: #C8AC90;
+  letter-spacing: 0.1em;
+}
+
+/* Nav buttons */
+.navBtn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(222,219,212,0.12);
+  border-radius: 50%;
+  background: rgba(89,97,104,0.12);
+  backdrop-filter: blur(10px);
+  color: #DEDBD4;
+  font-size: 1.1rem;
+  cursor: none;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.navBtn:hover {
+  border-color: #B46432;
+  background: rgba(180,100,50,0.15);
+  color: #B46432;
+}
+
+.left  { left: 36px; }
+.right { right: 36px; }
+
+/* Dots */
+.dots {
+  position: fixed;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #596168;
+  transition: all 0.3s;
+  cursor: none;
+}
+
+.dotActive {
+  background: #B46432;
+  width: 20px;
+  border-radius: 2px;
+}
+
+.hint {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(89,97,104,0.6);
+  z-index: 100;
+}

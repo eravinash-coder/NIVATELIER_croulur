@@ -1,0 +1,72 @@
+.card {
+  position: absolute;
+  width: 200px;
+  height: 260px;
+  border-radius: 4px;
+  overflow: hidden;
+  transform-origin: center bottom;
+  cursor: none;
+  transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .inner img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.label {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #DEDBD4;
+}
+
+.card:hover .label {
+  opacity: 1;
+}
+
+.active {
+  box-shadow: 0 40px 80px rgba(10,20,40,0.9), 0 0 60px rgba(180,100,50,0.2);
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(180,100,50,0.4);
+  border-radius: 4px;
+  pointer-events: none;
+}
