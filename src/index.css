@@ -1,24 +1,46 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* ── Brand Palette ─────────────────────────────────────────────
+   Color 1  Cinnamon Wood  #B46432  rgb(180,100,50)
+   Color 2  Tan            #C8AC90  rgb(200,172,144)
+   Color 3  Dust Grey      #DEDBD4  rgb(222,219,212)
+   Color 4  Blue Slate     #596168  rgb(89,97,104)
+   Color 5  Prussian Blue  #0A1428  rgb(10,20,40)
+──────────────────────────────────────────────────────────────── */
 :root {
-  --bg: #0A1428;          /* Prussian Blue */
-  --cream: #DEDBD4;       /* Dust Grey */
-  --gold: #B46432;        /* Cinnamon Wood */
-  --tan: #C8AC90;         /* Tan */
-  --slate: #596168;       /* Blue Slate */
-  --muted: #596168;
+  --color-cinnamon: #B46432;
+  /* primary accent / CTA       */
+  --color-tan: #C8AC90;
+  /* secondary accent / warm hi */
+  --color-dust: #DEDBD4;
+  /* primary text / light surf  */
+  --color-slate: #596168;
+  /* muted text / secondary     */
+  --color-prussian: #0A1428;
+  /* background / darkest       */
+
+  /* Semantic aliases */
+  --bg: var(--color-prussian);
+  --accent: var(--color-cinnamon);
+  --accent2: var(--color-tan);
+  --text: var(--color-dust);
+  --muted: var(--color-slate);
 }
 
-html, body, #root {
+html,
+body,
+#root {
   width: 100%;
   height: 100%;
   overflow: hidden;
   background: var(--bg);
-  color: var(--cream);
+  color: var(--text);
   font-family: 'Montserrat', sans-serif;
   cursor: none;
 }

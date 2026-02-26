@@ -3,10 +3,11 @@ node_modules/
 .pnp
 .pnp.js
 
-# Build output
+# Build output — Netlify builds this itself, never commit it
 dist/
 dist-ssr/
 build/
+
 
 # Vite cache
 .vite/

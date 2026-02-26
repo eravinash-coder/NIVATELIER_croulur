@@ -5,8 +5,8 @@ import styles from './Carousel.module.css'
 
 const TOTAL = products.length
 const VISIBLE = 7
-const RADIUS = 500
-const ANGLE_SPREAD = Math.PI * 0.45
+const RADIUS = 530
+const ANGLE_SPREAD = Math.PI * 0.38
 
 function getCardStyle(index, current) {
   const offset = ((index - current + TOTAL) % TOTAL)
@@ -20,10 +20,10 @@ function getCardStyle(index, current) {
   const angle = -Math.PI / 2 + t * ANGLE_SPREAD
 
   const centerX = 450 // half of 900px wrapper
-  const centerY = 700 // below the wrapper (creates the arc)
+  const centerY = 780 // arc pivot sits below the wrapper; pulls cards downward
 
   const x = centerX + RADIUS * Math.cos(angle) - 100
-  const y = centerY + RADIUS * Math.sin(angle) - 260
+  const y = centerY + RADIUS * Math.sin(angle) - 130
 
   const rotDeg = (t * ANGLE_SPREAD * 180 / Math.PI) * 0.6
   const scale = 1 - Math.abs(t) * 0.28

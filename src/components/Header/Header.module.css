@@ -1,6 +1,8 @@
 .header {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   display: flex;
   justify-content: space-between;
@@ -14,11 +16,13 @@
   font-size: 1.6rem;
   font-weight: 300;
   letter-spacing: 0.15em;
-  color: #DEDBD4;
+  color: var(--color-dust);
+  /* Dust Grey */
 }
 
 .logo span {
-  color: #B46432;
+  color: var(--color-cinnamon);
+  /* Cinnamon Wood */
   font-style: italic;
 }
 
@@ -28,7 +32,8 @@
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #596168;
+  color: var(--color-slate);
+  /* Blue Slate */
 }
 
 .nav a {
@@ -38,10 +43,18 @@
 }
 
 .nav a:hover {
-  color: #C8AC90;
+  color: var(--color-tan);
+  /* Tan on hover */
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(-10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
