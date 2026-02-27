@@ -23,11 +23,15 @@ function getCardStyle(index, current) {
   const centerY = 780 // arc pivot sits below the wrapper; pulls cards downward
 
   const x = centerX + RADIUS * Math.cos(angle) - 100
-  const y = centerY + RADIUS * Math.sin(angle) - 130
+  // lift the center card upward so it "pops" above the arc
+  const liftY = normalOffset === 0 ? -28 : 0
+  const y = centerY + RADIUS * Math.sin(angle) - 130 + liftY
 
   const rotDeg = (t * ANGLE_SPREAD * 180 / Math.PI) * 0.6
-  const scale = 1 - Math.abs(t) * 0.28
-  const zIndex = 10 - Math.abs(normalOffset)
+  // center card gets a bonus scale so it truly pops out
+  const baseScale = 1 - Math.abs(t) * 0.28
+  const scale = normalOffset === 0 ? 1.22 : baseScale
+  const zIndex = normalOffset === 0 ? 20 : 10 - Math.abs(normalOffset)
   const opacity = 1 - Math.abs(t) * 0.5
 
   return {
@@ -106,6 +110,16 @@ export default function Carousel() {
 
   return (
     <div className={styles.scene}>
+
+      {/* ── Stage vignette: darkens edges, keeps focus on centre ── */}
+      <div className={styles.vignette} aria-hidden="true" />
+
+      {/* ── Spotlight cone: beam from ceiling to centre card ── */}
+      <div className={styles.spotCone} aria-hidden="true" />
+
+      {/* ── Spotlight floor pool: light reflected on the ground ── */}
+      <div className={styles.spotFloor} aria-hidden="true" />
+
       <div className={styles.wrapper}>
         {products.map((product, i) => (
           <ProductCard

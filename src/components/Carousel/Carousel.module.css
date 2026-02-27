@@ -1,3 +1,14 @@
+/* ══════════════════════════════════════════════════════════════
+   Carousel.module.css  —  NIV ATELIER
+   Brand palette:
+     Cinnamon Wood  #B46432   rgb(180,100,50)
+     Tan            #C8AC90   rgb(200,172,144)
+     Dust Grey      #DEDBD4   rgb(222,219,212)
+     Blue Slate     #596168   rgb(89,97,104)
+     Prussian Blue  #0A1428   rgb(10,20,40)
+══════════════════════════════════════════════════════════════ */
+
+/* ── Scene root ─────────────────────────────────────────────── */
 .scene {
   position: fixed;
   inset: 0;
@@ -22,11 +33,105 @@
   }
 }
 
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   STAGE VIGNETTE — soft Prussian Blue frame, light centre
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 52% 62% at 50% 46%,
+      transparent 0%,
+      rgba(10, 20, 40, 0.22) 55%,
+      rgba(10, 20, 40, 0.50) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SPOTLIGHT CONE — Cinnamon Wood → Tan beam from ceiling to card
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.spotCone {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 72vh;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background: linear-gradient(to bottom,
+      rgba(180, 100, 50, 0.50) 0%,
+      /* Cinnamon Wood — bright source */
+      rgba(200, 172, 144, 0.26) 38%,
+      /* Tan — warm mid beam           */
+      rgba(180, 100, 50, 0.10) 74%,
+      /* Cinnamon fade                 */
+      transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+  filter: blur(6px);
+  animation: coneBreath 3.5s ease-in-out infinite;
+}
+
+@keyframes coneBreath {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  50% {
+    opacity: 0.72;
+    transform: translateX(-50%) scaleX(0.90);
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SPOTLIGHT FLOOR POOL — Tan/Cinnamon oval on the stage floor
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.spotFloor {
+  position: fixed;
+  top: 56%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse 100% 100% at 50% 50%,
+      rgba(200, 172, 144, 0.32) 0%,
+      /* Tan warm centre */
+      rgba(180, 100, 50, 0.14) 50%,
+      /* Cinnamon ring   */
+      transparent 80%);
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  animation: floorPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes floorPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: translateX(-50%) scaleX(0.85);
+  }
+}
+
+/* ── Card wrapper ───────────────────────────────────────────── */
 .wrapper {
   position: relative;
   width: 900px;
   height: 460px;
   overflow: visible;
+  z-index: 2;
 }
 
 /* ── Product info ───────────────────────────────────────────── */
@@ -34,6 +139,8 @@
   text-align: center;
   margin-top: 52px;
   transition: opacity 0.4s ease, transform 0.4s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .info.hidden {
@@ -43,7 +150,7 @@
 
 .tag {
   font-size: 0.6rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--color-cinnamon);
   /* Cinnamon Wood */
@@ -64,7 +171,7 @@
   font-size: 0.7rem;
   color: var(--color-slate);
   /* Blue Slate */
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   margin-bottom: 24px;
 }
 
@@ -84,10 +191,10 @@
   width: 48px;
   height: 48px;
   border: 1px solid rgba(222, 219, 212, 0.12);
-  /* Dust Grey edge */
+  /* Dust Grey hairline  */
   border-radius: 50%;
   background: rgba(89, 97, 104, 0.12);
-  /* Blue Slate fill */
+  /* Blue Slate glass    */
   backdrop-filter: blur(10px);
   color: var(--color-dust);
   font-size: 1.1rem;
@@ -96,14 +203,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .navBtn:hover {
   border-color: var(--color-cinnamon);
-  /* Cinnamon Wood */
   background: rgba(180, 100, 50, 0.15);
   color: var(--color-cinnamon);
+  box-shadow: 0 0 18px rgba(180, 100, 50, 0.22);
 }
 
 .left {
@@ -149,9 +256,9 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.55rem;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(89, 97, 104, 0.6);
+  color: rgba(89, 97, 104, 0.55);
   /* Blue Slate muted */
   z-index: 100;
 }

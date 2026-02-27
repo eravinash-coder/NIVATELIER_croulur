@@ -1,62 +1,140 @@
+/* ══════════════════════════════════════════════════════════════
+   ProductCard.module.css  —  NIV ATELIER
+   Brand palette:
+     Cinnamon Wood  #B46432   rgba(180,100,50,…)
+     Tan            #C8AC90   rgba(200,172,144,…)
+     Dust Grey      #DEDBD4
+     Blue Slate     #596168
+     Prussian Blue  #0A1428   rgba(10,20,40,…)
+══════════════════════════════════════════════════════════════ */
+
+/* ── Base card shell ────────────────────────────────────────── */
 .card {
   position: absolute;
   width: 200px;
   height: 260px;
-  border-radius: 4px;
-  overflow: hidden;
+  border-radius: 6px;
+  overflow: visible;
+  /* glow + pseudo-elements bleed out */
   transform-origin: center bottom;
   cursor: none;
   transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform, opacity;
 }
 
+/* Clips the image inside rounded corners */
 .inner {
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
+  border-radius: 6px;
 }
 
+/* ── Product image — full colour, no desaturation ───────────── */
 .inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .card:hover .inner img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
+/* ── Hover gradient overlay (Prussian Blue scrim) ───────────── */
 .overlay {
   position: absolute;
   inset: 0;
-  /* Prussian Blue → transparent gradient on hover */
-  background: linear-gradient(to top, rgba(10, 20, 40, 0.75) 0%, transparent 55%);
+  background: linear-gradient(to top,
+      rgba(10, 20, 40, 0.80) 0%,
+      transparent 60%);
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.35s ease;
+  border-radius: 6px;
 }
 
 .card:hover .overlay {
   opacity: 1;
 }
 
-/* Active card — Cinnamon Wood glow ring */
+/* ══════════════════════════════════════════════════════════════
+   ACTIVE (centre) card — SPOTLIGHT + POP-OUT
+══════════════════════════════════════════════════════════════ */
 .active {
   box-shadow:
-    0 40px 80px rgba(10, 20, 40, 0.90),
-    /* Prussian Blue deep shadow */
-    0 0 50px rgba(180, 100, 50, 0.22);
-  /* Cinnamon Wood halo */
+    /* deep Prussian floor shadow for physical lift */
+    0 60px 120px rgba(10, 20, 40, 0.95),
+    /* wide Cinnamon Wood aura */
+    0 0 80px rgba(180, 100, 50, 0.55),
+    /* tight Cinnamon core glow */
+    0 0 30px rgba(210, 140, 60, 0.70),
+    /* Tan top-rim blush */
+    0 -8px 40px rgba(200, 172, 144, 0.16);
 }
 
-.active::after {
+/* Cinnamon Wood rim border */
+.active .inner::after {
   content: '';
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(180, 100, 50, 0.45);
-  /* Cinnamon Wood rim */
-  border-radius: 4px;
+  border: 1.5px solid rgba(180, 100, 50, 0.60);
+  border-radius: 6px;
   pointer-events: none;
+  z-index: 4;
+}
+
+/* ── Per-card spotlight cone above the active card ────────────── */
+.active::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 260px;
+  background: radial-gradient(ellipse 55% 100% at 50% 100%,
+      rgba(200, 172, 144, 0.22) 0%,
+      /* Tan warm core */
+      rgba(180, 100, 50, 0.10) 40%,
+      /* Cinnamon fade */
+      transparent 80%);
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(4px);
+  animation: spotlightPulse 3s ease-in-out infinite;
+}
+
+/* ── Floor pool beneath the active card ──────────────────────── */
+.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 50px;
+  background: radial-gradient(ellipse 100% 100% at 50% 0%,
+      rgba(180, 100, 50, 0.35) 0%,
+      /* Cinnamon Wood */
+      transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(8px);
+}
+
+@keyframes spotlightPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scaleY(1);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: translateX(-50%) scaleY(0.93);
+  }
 }

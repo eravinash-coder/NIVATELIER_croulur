@@ -15,17 +15,28 @@
 ──────────────────────────────────────────────────────────────── */
 :root {
   --color-cinnamon: #B46432;
-  /* primary accent / CTA       */
+  /* primary accent / CTA        */
   --color-tan: #C8AC90;
-  /* secondary accent / warm hi */
+  /* secondary accent / warm hi  */
   --color-dust: #DEDBD4;
-  /* primary text / light surf  */
+  /* primary text / light surf   */
   --color-slate: #596168;
-  /* muted text / secondary     */
+  /* muted text / secondary      */
   --color-prussian: #0A1428;
-  /* background / darkest       */
+  /* background / darkest        */
 
-  /* Semantic aliases */
+  /* Extended shades for glow/shadow effects */
+  --color-prussian-deep: #060d1a;
+  --color-prussian-mid: #0e1f3a;
+  --color-prussian-edge: #162540;
+
+  /* Tint helpers */
+  --color-cinnamon-dim: rgba(180, 100, 50, 0.18);
+  --color-cinnamon-glow: rgba(180, 100, 50, 0.55);
+  --color-cinnamon-rim: rgba(200, 120, 60, 0.55);
+  --color-tan-glow: rgba(200, 172, 144, 0.10);
+
+  /* Semantic aliases — background uses the ORIGINAL Prussian Blue */
   --bg: var(--color-prussian);
   --accent: var(--color-cinnamon);
   --accent2: var(--color-tan);
@@ -43,4 +54,7 @@ body,
   color: var(--text);
   font-family: 'Montserrat', sans-serif;
   cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
